@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess who's 20! 🎉</title>
+    <link rel="stylesheet" href="style20th.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Quicksand:wght@300;400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Audio element for background music -->
+    <audio id="birthday-music" loop>
+        <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Floating confetti background -->
+    <div class="confetti-container">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+
+    <!-- Main container -->
+    <div class="container">
+        <!-- Instruction text -->
+        <div class="instruction">Click the envelope! 💌</div>
+
+        <!-- Envelope and card wrapper -->
+        <div class="envelope-wrapper" id="envelope-wrapper">
+            <!-- The Birthday Card -->
+            <div class="card" id="card">
+                <div class="card-front">
+                    <div class="balloon balloon-1">🎈</div>
+                    <div class="balloon balloon-2">🎈</div>
+                    <div class="balloon balloon-3">🎈</div>
+                    
+                    <h1 class="main-title">Happiest Birthday to Me!</h1>
+                    
+                    <div class="decorative-element">✨</div>
+                    
+                    <p class="birthday-message">
+                       I can officially write-"20 laps around the sun" <br>under experience in my resume!<br>
+                        Here's to being weird, endlessly delulu,<br>
+                        letting those intrusive thoughts win, <br>
+                        acting on impulse and dreaming with <br> my eyes wide open.🥂
+                    </p>
+                    
+                    <div class="cake-emoji">🎂🎉🎊</div>
+                    
+                    <div class="age-badge">
+                        <span class="age-number">20</span>
+                    </div>
+
+                    <div class="sparkles">
+                        <span class="sparkle">✦</span>
+                        <span class="sparkle">✦</span>
+                        <span class="sparkle">✦</span>
+                        <span class="sparkle">✦</span>
+                        <span class="sparkle">✦</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The Envelope -->
+            <div class="envelope" id="envelope">
+                <div class="envelope-flap"></div>
+                <div class="envelope-body"></div>
+                <div class="envelope-front">
+                    <div class="envelope-heart">💖</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Music control button -->
+        <button class="music-toggle" id="music-toggle">
+            <span class="music-icon">🎵</span>
+            <span class="music-text">Play Music</span>
+        </button>
+    </div>
+
+    <script>
+        const envelopeWrapper = document.getElementById('envelope-wrapper');
+        const envelope = document.getElementById('envelope');
+        const card = document.getElementById('card');
+        const music = document.getElementById('birthday-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.querySelector('.music-icon');
+        const musicText = document.querySelector('.music-text');
+        let isOpen = false;
+        let isMusicPlaying = false;
+
+        // Envelope click handler
+        envelopeWrapper.addEventListener('click', function() {
+            if (!isOpen) {
+                envelope.classList.add('open');
+                card.classList.add('pull-out');
+                isOpen = true;
+                
+                // Auto-play music when card opens
+                if (!isMusicPlaying) {
+                    music.play().catch(e => console.log('Auto-play prevented'));
+                    isMusicPlaying = true;
+                    musicIcon.textContent = '🎵';
+                    musicText.textContent = 'Pause Music';
+                }
+            }
+        });
+
+        // Music toggle handler
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            if (isMusicPlaying) {
+                music.pause();
+                musicIcon.textContent = '🔇';
+                musicText.textContent = 'Play Music';
+            } else {
+                music.play().catch(e => console.log('Play prevented'));
+                musicIcon.textContent = '🎵';
+                musicText.textContent = 'Pause Music';
+            }
+            isMusicPlaying = !isMusicPlaying;
+        });
+    </script>
+</body>
+</html>
